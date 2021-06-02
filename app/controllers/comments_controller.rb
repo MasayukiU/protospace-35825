@@ -2,12 +2,11 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.create(comment_params)
 		if @comment.save
-      # redirect_to prototype_path(@comment.prototype) # 今回の実装には関係ありませんが、このようにPrefixでパスを指定することが望ましいです。
 			redirect_to "/prototypes/#{@comment.prototype.id}"
 		else
       @prototype = @comment.prototype
       @comments = @prototype.comments
-      render "prototypes/show" # views/tweets/show.html.erbのファイルを参照しています。
+      render "prototypes/show"
     end
   end
 
